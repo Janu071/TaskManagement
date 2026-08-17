@@ -6,7 +6,6 @@ import { FaRegCircleCheck } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    console.log("LOGIN COMPONENT RUNNING");
     const navigate = useNavigate();
     const [details, setDetails] = useState({
         email: "",
@@ -43,6 +42,10 @@ function Login() {
             newErrors.password = "Password cannot be blank";
             valid = false;
         }
+        else if (details.password.length < 6) {
+            newErrors.password = "Password must be at least 6 characters";
+            valid = false;
+        }
 
         setErrors(newErrors);
 
@@ -63,7 +66,7 @@ function Login() {
         <>
             <div className="Container fluid box">
 
-                <form className="login" onSubmit={(e)=>show(e)}>
+                <form className="login" onSubmit={(e) => show(e)}>
                     <h1>Log In</h1>
                     <div>
                         <label htmlFor="email"> Email</label>
