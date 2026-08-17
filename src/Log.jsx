@@ -56,9 +56,6 @@ function Login() {
     const show = (data) => {
         data.preventDefault();
         setSubmitted(true);
-         console.log("Password:", details.password);
-    console.log("Password length:", details.password.length);
-
         const isValid = validate();
 
         if (isValid) {
@@ -70,7 +67,7 @@ function Login() {
         <>
             <div className="Container fluid box">
 
-                <form className="login" onSubmit={show}>
+                <form className="login" onSubmit={(e)=>show(e)}>
                     <h1>Log In</h1>
                     <div>
                         <label htmlFor="email"> Email</label>
@@ -103,6 +100,7 @@ function Login() {
                                 id="password"
                                 onChange={(e) => login(e)}
                                 placeholder="Password here"
+                                minLength={6}
                                 value={details.password}
                                 className={submitted ? (errors.password ? "error_border" : "success_border") : ""} />
 
@@ -119,7 +117,7 @@ function Login() {
 
                         <div className="error">{errors.password}</div>
                     </div>
-                    <button type='submit'  onClick={() => console.log("BUTTON CLICKED")}>Submit</button>
+                    <button type='submit'>Submit</button>
                 </form>
             </div>
         </>
