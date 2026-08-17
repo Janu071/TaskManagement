@@ -15,13 +15,13 @@ function Login() {
         email: "",
         password: ""
     });
-    
+
     const [submitted, setSubmitted] = useState(false);
 
     const login = (e) => {
         const { name, value } = e.target;
         setDetails((prev) => ({
-            ...prev,[name]: value
+            ...prev, [name]: value
         }));
     };
 
@@ -33,9 +33,17 @@ function Login() {
             newErrors.email = "Email cannot be blank";
             valid = false;
         }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(details.email)) {
+            newErrors.email = "Enter a valid email";
+            valid = false;
+        }
 
         if (details.password.trim() === "") {
             newErrors.password = "Password cannot be blank";
+            valid = false;
+        }
+        else if (details.password.length < 6) {
+            newErrors.password = "Password must be at least 6 characters";
             valid = false;
         }
 
@@ -56,58 +64,58 @@ function Login() {
     }
     return (
         <>
-           <div className="Container fluid box">
-            <form className="login" onSubmit={(e) => show(e)}>
-                <h1>Log In</h1>
-                <div>
-                    <label htmlFor="email"> Email</label>
-                    <div className="mail">
-                        <MdOutlineEmail className="icon" />
-                        <input type="email"
-                            name="email"
-                            id="email"
-                            onChange={(e) => login(e)}
-                            placeholder="abc@gmail.com"
-                            value={details.email}
-                            className={submitted ? (errors.email ? "error_border" : "success_border"): ""} />
+            <div className="Container fluid box">
+                <form className="login" onSubmit={(e) => show(e)}>
+                    <h1>Log In</h1>
+                    <div>
+                        <label htmlFor="email"> Email</label>
+                        <div className="mail">
+                            <MdOutlineEmail className="icon" />
+                            <input type="email"
+                                name="email"
+                                id="email"
+                                onChange={(e) => login(e)}
+                                placeholder="abc@gmail.com"
+                                value={details.email}
+                                className={submitted ? (errors.email ? "error_border" : "success_border") : ""} />
 
-                        {submitted &&
-                            (errors.email ? (
-                                <BsExclamationCircle className="failure" />
-                            ) : (
-                                <FaRegCircleCheck className="success" />
-                            ))
-                        }
+                            {submitted &&
+                                (errors.email ? (
+                                    <BsExclamationCircle className="failure" />
+                                ) : (
+                                    <FaRegCircleCheck className="success" />
+                                ))
+                            }
+                        </div>
+                        <div className="error">{errors.email}</div>
                     </div>
-                    <div className="error">{errors.email}</div>
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <div className="pass">
-                        <FaLock className="icon" />
-                        <input type="password"
-                            name="password"
-                            id="password"
-                            onChange={(e) => login(e)}
-                            placeholder="Password here"
-                            value={details.password}
-                            className={submitted ? (errors.password ? "error_border" : "success_border"): ""} />
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <div className="pass">
+                            <FaLock className="icon" />
+                            <input type="password"
+                                name="password"
+                                id="password"
+                                onChange={(e) => login(e)}
+                                placeholder="Password here"
+                                value={details.password}
+                                className={submitted ? (errors.password ? "error_border" : "success_border") : ""} />
 
-                        {submitted &&
-                            (errors.password ? (
-                                <BsExclamationCircle className="failure" />
-                            ) : (
-                                <FaRegCircleCheck className="success" />
-                            ))
-                        }
+                            {submitted &&
+                                (errors.password ? (
+                                    <BsExclamationCircle className="failure" />
+                                ) : (
+                                    <FaRegCircleCheck className="success" />
+                                ))
+                            }
+                        </div>
+
+
+
+                        <div className="error">{errors.password}</div>
                     </div>
-
-
-
-                    <div className="error">{errors.password}</div>
-                </div>
-                <button type='submit'>Submit</button>
-            </form>
+                    <button type='submit'>Submit</button>
+                </form>
             </div>
         </>
     )
