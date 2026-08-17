@@ -117,7 +117,7 @@ function Login() {
 
                         <div className="error">{errors.password}</div>
                     </div>
-                    <button type='submit'>Submit</button>
+                    <button type='submit'  onClick={() => console.log("BUTTON CLICKED")}>Submit</button>
                 </form>
             </div>
         </>
