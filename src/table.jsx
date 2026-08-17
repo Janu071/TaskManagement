@@ -20,7 +20,7 @@ function Task({ tasks, setTasks, search }) {
         priority: "",
         status: ""
     });
-    
+
     const [sort, setSort] = useState("");
     const [status, setStatus] = useState("");
     const [priority, setPriority] = useState("");
@@ -118,6 +118,19 @@ function Task({ tasks, setTasks, search }) {
         }
     };
 
+    const toggleStatus = (id) => {
+        setTasks(
+            tasks.map((task) =>
+                task.id === id ? {
+                    ...task,
+                    status: task.status === "Completed"
+                        ? "Pending"
+                        : "Completed"
+                } : task
+            )
+        );
+    };
+
     const Change = (e) => {
         setTemp({
             ...temp,
@@ -144,34 +157,34 @@ function Task({ tasks, setTasks, search }) {
             <h1 className="text-white">Task Details</h1>
             <div className="sort">
                 <div>
-                <select
-                    value={sort}
-                    onChange={(e) => setSort(e.target.value)}
-                >
-                    <option value="">Sort By</option>
-                    <option value="dueDate">Due Date</option>
-                    <option value="priority">Priority</option>
-                    <option value="title">Title</option>
-                </select>
+                    <select
+                        value={sort}
+                        onChange={(e) => setSort(e.target.value)}
+                    >
+                        <option value="">Sort By</option>
+                        <option value="dueDate">Due Date</option>
+                        <option value="priority">Priority</option>
+                        <option value="title">Title</option>
+                    </select>
 
-                <select
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value)}
-                >
-                    <option value="">All Status</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Completed">Completed</option>
-                </select>
+                    <select
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value)}
+                    >
+                        <option value="">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
 
-                <select
-                    value={priority}
-                    onChange={(e) => setPriority(e.target.value)}
-                >
-                    <option value="">All Priority</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </select>
+                    <select
+                        value={priority}
+                        onChange={(e) => setPriority(e.target.value)}
+                    >
+                        <option value="">All Priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
                 </div>
                 <Button variant="success" onClick={() => addShow()}>Add User</Button>
             </div>
@@ -200,7 +213,11 @@ function Task({ tasks, setTasks, search }) {
                                     <td className="btns">
                                         <Button variant="primary" className='me-3' onClick={() => handleShow(d)}>Edit</Button>
                                         <Button variant="danger" className='me-3' onClick={() => deleted(d.id)}>Delete</Button>
-                                        <Button>{d.status === "Completed" ? <IoCheckmarkSharp /> : <FaArrowRotateRight />}</Button>
+                                        <Button onClick={() => toggleStatus(d.id)}>
+                                            {d.status === "Completed"
+                                                ? <IoCheckmarkSharp />
+                                                : <FaArrowRotateRight />}
+                                        </Button>
                                     </td>
                                 </tr>
                             )
