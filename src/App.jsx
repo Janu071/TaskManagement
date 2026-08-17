@@ -2,14 +2,14 @@
 import Log from './Log'
 import Dash from './Dash';
 import './App.css'
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 
 function App() {
 
 
   return (
     <>
-    <BrowserRouter basename="/TaskManagement">
+    <HashRouter>
 
       <Routes>
 
@@ -19,7 +19,7 @@ function App() {
 
       </Routes>
 
-    </BrowserRouter>
+    </HashRouter>
      
     </>
   )
