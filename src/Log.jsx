@@ -6,6 +6,7 @@ import { FaRegCircleCheck } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    console.log("LOGIN COMPONENT RUNNING");
     const navigate = useNavigate();
     const [details, setDetails] = useState({
         email: "",
@@ -68,6 +69,7 @@ function Login() {
     return (
         <>
             <div className="Container fluid box">
+
                 <form className="login" onSubmit={show}>
                     <h1>Log In</h1>
                     <div>
