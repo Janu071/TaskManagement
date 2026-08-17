@@ -55,6 +55,9 @@ function Login() {
     const show = (data) => {
         data.preventDefault();
         setSubmitted(true);
+         console.log("Password:", details.password);
+    console.log("Password length:", details.password.length);
+
         const isValid = validate();
 
         if (isValid) {
