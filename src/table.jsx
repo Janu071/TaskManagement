@@ -119,6 +119,7 @@ function Task({ tasks, setTasks, search }) {
     };
 
     const toggleStatus = (id) => {
+         console.log("Clicked ID:", id);
         setTasks(
             tasks.map((task) =>
                 task.id === id ? {
