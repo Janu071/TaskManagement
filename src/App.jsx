@@ -1,5 +1,5 @@
 
-import Log from './Log'
+import Login from './Log'
 import Dash from './Dash';
 import './App.css'
 import { Routes, Route, HashRouter } from 'react-router-dom';
@@ -13,7 +13,7 @@ function App() {
 
       <Routes>
 
-        <Route path="/" element={<Log />} />
+        <Route path="/" element={<Login />} />
 
         <Route path="/dashboard" element={<Dash />} />
 
