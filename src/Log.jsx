@@ -68,7 +68,7 @@ function Login() {
     return (
         <>
             <div className="Container fluid box">
-                <form className="login" onSubmit={(e) => show(e)}>
+                <form className="login" onSubmit={show}>
                     <h1>Log In</h1>
                     <div>
                         <label htmlFor="email"> Email</label>
