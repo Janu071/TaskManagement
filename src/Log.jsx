@@ -43,10 +43,6 @@ function Login() {
             newErrors.password = "Password cannot be blank";
             valid = false;
         }
-        else if (details.password.length < 6) {
-            newErrors.password = "Password must be at least 6 characters";
-            valid = false;
-        }
 
         setErrors(newErrors);
 
