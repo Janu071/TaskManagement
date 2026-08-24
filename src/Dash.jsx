@@ -39,7 +39,7 @@ function Dash() {
                 description: "Create table and add,create,edit,delete the task",
                 dueDate: "2026-08-20",
                 priority: "High",
-                status: "pending"
+                status: "Pending"
             }
         ];
     });
