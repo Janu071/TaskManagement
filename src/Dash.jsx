@@ -46,7 +46,8 @@ function Dash() {
 
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
+        console.log("Run");
+    });
 
     const totalTasks = tasks.length;
     const completed = tasks.filter(
